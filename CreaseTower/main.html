@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crease</title>
+    <link rel="stylesheet" type="text/css" href="./maincss.css">
+</head>
+<body>
+
+    <h1 align="center">Crease Patter of Pivot joint</h1>
+
+
+
+<!-- 定义单个组件 -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+   viewBox="-250 -100 300 300"
+   overflow="visible"
+   id="svg1"
+   >
+ 
+   <defs>
+    <!-- 下凹4-梯形模块 -->
+    <g id="DownPart">
+    <polyline 
+    points="212.0,0 87.8,0 0,87.8 100,129.2 129.2,100 170.6,100 199.8,129.2 199.8,170.6 299.8,212.0 299.8,87.8" 
+    fill="none"
+    stroke="black"
+    stroke-width="3"
+    />
+    <path
+    d = "M87.8,0 L129.2,100"
+    style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+   <path
+   d = "M212.0,0 L170.6,100"
+   style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+   <path
+   d = "M199.8,129.2 L299.8,87.8"
+   style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+   <path
+    d = "M212,0 L299.8,87.8"
+    style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+</g>
+
+<!-- 上凹4-梯形模块 -->
+<g id="UpPart">
+
+   <polyline
+   points="212,0 212,-124.2 312,-82.8 312,-41.4 341.2,-12.2 382.6,-12.2 411.8,-41.4 511.8,0 424,87.8 299.8,87.8" 
+   fill="none"
+   stroke="black"
+   stroke-width="3"
+   />
+   <path
+    d = "M312,-41.4 L212,0"
+    style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+    <path
+    d = "M341.2,-12.2 L299.8,87.8"
+    style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+    <path
+    d = "M382.6,-12.2 L424,87.8"
+    style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+    <path
+    d = "M212,0 L299.8,87.8"
+    style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+</g>
+
+<!-- 一层包含四个下凹四个上凹梯形 -->
+<g id="OneLayer">
+    <use x="0" y="0" xlink:href="#DownPart"></use>
+    <use x="424.0" y="0" xlink:href="#DownPart"></use>
+    <use x="848.0" y="0" xlink:href="#DownPart"></use>
+    <use x="1272.0" y="0" xlink:href="#DownPart"></use>
+    <use x="0" y="0" xlink:href="#UpPart"></use>
+    <use x="424" y="0" xlink:href="#UpPart"></use>
+    <use x="848" y="0" xlink:href="#UpPart"></use>
+    <use x="1272" y="0" xlink:href="#UpPart"></use>
+</g>
+</defs>
+</svg>
+
+<div id="div2" class="output">
+<!-- 复用单个组件 -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+viewBox="-250 -100 300 300"
+overflow="visible" 
+id="svg2">
+    <use x="0" y="0" xlink:href="#OneLayer"></use>
+</svg>
+</div>
+
+
+<!-- 滑动滚动条 -->
+<!-- <div class="content" id="div3">
+    <p>The number of layer (max:10): 10</p>
+    <div class="bar">
+    <div class="progress"></div>
+    <div class="dot"></div>
+    </div>
+</div> 
+ -->
+ 
+ <div id="div3">
+    <p>The number of layer (max:8):</p>
+    <input type="range" id="myRange" oninput="showValue(this.value); Tower(this.value)" min="1" max="8">
+    <output for="myRange" id="rangeValue"></output>
+ </div>
+ 
+ <p><button class="print" type="button">Export</button></p>
+ <canvas id="bg_canvas" width="100%" height="100%" />
+
+ <script>
+     function showValue(value) {
+     document.getElementById("rangeValue").innerHTML = value;
+     }
+ </script>
+
+
+<!-- 
+<p><input type="number" value="" id="layerinput"></p>
+<button onclick="Tower()">getNumber</button> -->
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/tower.js"></script>
+<script type="text/javascript" src="js/saveSVG.js"></script>
+<script type="text/javascript" src="js/html2canvas.js"></script>
+<script type="text/javascript" src="js/jQuery.print.js"></script>
+<script type="text/javascript" src="js/jcanvas.min.js"></script>
+<script type="text/javascript" src="js/screenshot.js"></script>
+
+</body>
+</html>
