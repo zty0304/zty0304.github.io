@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crease</title>
+    <link rel="stylesheet" type="text/css" href="./maincss.css">
+</head>
+<body>
+
+    <h1 align="center">Crease Patter of Pivot joint</h1>
+
+
+
+<!-- 定义单个组件 -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+   viewBox="-250 -100 300 300"
+   overflow="visible"
+   id="svg1"
+   >
+ 
+   <defs>
+    <!-- 下凹4-梯形模块 -->
+    <g id="DownPart">
+    <polyline 
+    points="212.0,0 87.8,0 0,87.8 100,129.2 129.2,100 170.6,100 199.8,129.2 199.8,170.6 299.8,212.0 299.8,87.8" 
+    fill="none"
+    stroke="black"
+    stroke-width="3"
+    />
+    <path
+    d = "M87.8,0 L129.2,100"
+    style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+   <path
+   d = "M212.0,0 L170.6,100"
+   style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+   <path
+   d = "M199.8,129.2 L299.8,87.8"
+   style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+   <path
+    d = "M212,0 L299.8,87.8"
+    style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+</g>
+
+<!-- 上凹4-梯形模块 -->
+<g id="UpPart">
+
+   <polyline
+   points="212,0 212,-124.2 312,-82.8 312,-41.4 341.2,-12.2 382.6,-12.2 411.8,-41.4 511.8,0 424,87.8 299.8,87.8" 
+   fill="none"
+   stroke="black"
+   stroke-width="3"
+   />
+   <path
+    d = "M312,-41.4 L212,0"
+    style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+    <path
+    d = "M341.2,-12.2 L299.8,87.8"
+    style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+    <path
+    d = "M382.6,-12.2 L424,87.8"
+    style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+    <path
+    d = "M212,0 L299.8,87.8"
+    style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+</g>
+
+<!-- 一层包含四个下凹四个上凹梯形 -->
+<g id="OneLayer">
+    <use x="0" y="0" xlink:href="#DownPart"></use>
+    <use x="424.0" y="0" xlink:href="#DownPart"></use>
+    <use x="848.0" y="0" xlink:href="#DownPart"></use>
+    <use x="1272.0" y="0" xlink:href="#DownPart"></use>
+    <use x="0" y="0" xlink:href="#UpPart"></use>
+    <use x="424" y="0" xlink:href="#UpPart"></use>
+    <use x="848" y="0" xlink:href="#UpPart"></use>
+    <use x="1272" y="0" xlink:href="#UpPart"></use>
+</g>
+</defs>
+</svg>
+
+<div id="div2" class="output">
+<!-- 复用单个组件 -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+viewBox="-250 -100 300 300"
+overflow="visible" 
+id="svg2">
+    <use x="0" y="0" xlink:href="#OneLayer"></use>
+</svg>
+</div>
+
+<div id="div4" class="outputsvg">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+        overflow="visible" 
+        id="svg3">
+
+   <!--  <polyline 
+    points="0,212 87.8,124.2 212,124.2 212,0 312,41.4 312,82.8 341.2,112 382.6,112 411.8,82.8 511.8,124.2 424,212 299.8,212 299.8,336.2 199.8,294.8 199.8,253.4 170.6,224.2 129.2,224.2 100,253.4 0,212" 
+    fill="none"
+    stroke="black"
+    stroke-width="3"
+    />
+    <path
+    d = "M87.8,124.2 L129.2,224.2 M341.2,112 L299.8,212 M199.8,253.4 L299.8,212 M212,124.2 L299.8,212 M312,82.8 L212,124.2 M212.0,124.2 L170.6,224.2 M382.6,112 L424,212"
+    style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+    
+    <polyline 
+    points="424,212 511.8,124.2 636,124.2 636,0 736,41.4 736,82.8 765.2,112 806.6,112 835.8,82.8 935.8,124.2 848,212 723.8,212 723.8,336.2 623.8,294.8 623.8,253.4 594.6,224.2 553.2,224.2 524,253.4 424,212" 
+    fill="none"
+    stroke="black"
+    stroke-width="3"
+    />
+    <path
+    d = "M511.8,124.2 L553.2,224.2 M765.2,112 L723.8,212 M623.8,253.4 L723.8,212 M636,124.2 L723.8,212 M736,82.8 L636,124.2 M636,124.2 L594.6,224.2 M806.6,112 L848,212"
+    style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+    
+    
+    <polyline 
+    points="848,212 935.8,124.2 1060,124.2 1060,0 1160,41.4 1160,82.8 1189.2,112 1230.6,112 1259.8,82.8 1359.8,124.2 1272,212 1147.8,212 1147.8,336.2 1047.8,294.8 1047.8,253.4 1018.6,224.2 977.2,224.2 948,253.4 848,212" 
+    fill="none"
+    stroke="black"
+    stroke-width="3"
+    />
+    <path
+    d = "M935.8,124.2 L977.2,224.2 M1189.2,112 L1147.8,212 M1047.8,253.4 L1147.8,212 M1060,124.2 L1147.8,212 M1160,82.8 L1060,124.2 M1060.0,124.2 L1018.6,224.2 M1230.6,112 L1272,212"
+    style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" />
+    
+    <polyline 
+    points="1272,212 1359.8,124.2 1484,124.2 1484,0 1584,41.4 1584,82.8 1613.2,112 1654.6,112 1683.8,82.8 1783.8,124.2 1696,212 1571.8,212 1571.8,336.2 1471.8,294.8 1471.8,253.4 1442.6,224.2 1401.2,224.2 1372,253.4 1272,212" 
+    fill="none"
+    stroke="black"
+    stroke-width="3"
+    />
+    <path
+    d = "M1359.8,124.2 L1401.2,224.2 M1613.2,112 L1571.8,212 M1471.8,253.4 L1571.8,212 M1484,124.2 L1571.8,212 M1584,82.8 L1484,124.2 M1484,124.2 L1442.6,224.2 M1654.6,112 L1696,212"
+    style="fill:none;stroke:steelblue;stroke-width:3;stroke-dasharray:5,5" /> -->
+    
+    <path id="pathstroke" 
+    style="fill:none;stroke:black;stroke-width:1" />
+    <path id="pathlink"
+    style="fill:none;stroke:steelblue;stroke-width:1;stroke-dasharray:1,1" />
+</svg>
+</div>
+
+<!-- 滑动滚动条 -->
+<!-- <div class="content" id="div3">
+    <p>The number of layer (max:10): 10</p>
+    <div class="bar">
+    <div class="progress"></div>
+    <div class="dot"></div>
+    </div>
+</div> 
+ -->
+ 
+ <div id="div3">
+    <p>The number of layer (max:10):</p>
+    <input type="range" id="myRange" oninput="showValue(this.value); Tower(this.value)" min="1" max="10">
+    <output for="myRange" id="rangeValue"></output>
+    <p>Size adjustment:(base : 20px)</p>
+    <input type="range" id="sizerange" oninput="showValue1(this.value); sizeset(this.value)" min="1" max="10">
+    <output for="myRange" id="sizeValue"></output>
+    <!-- <p><button class="print" type="button">Export</button></p> -->
+    <p><button type="button" onclick="drawAgain()">Export</button></p>
+ </div>
+
+
+ 
+ 
+ <canvas id="bg_canvas" width="100%" height="100%" />
+
+ <script>
+     function showValue(value) {
+     document.getElementById("rangeValue").innerHTML = value;
+     }
+     function showValue1(value){
+        document.getElementById("sizeValue").innerHTML = value;
+     }
+ </script>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/tower.js"></script>
+<script type="text/javascript" src="js/FileSaver.js"></script>
+<script type="text/javascript" src="js/saveCode.js"></script>
+</body>
+</html>
