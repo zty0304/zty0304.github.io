@@ -2,85 +2,85 @@ schema: hugoblox/author/v1
 slug: me
 is_owner: true
 name:
-  display: Dr. Alex Johnson
-  given: Alex
-  family: Johnson
-  alternate: ''  # Example: 王伟
-  pronunciation: ''  # Example: Wáng Wěi
-  pronouns: he/him
+  display: Tianyu Zhang
+  given: Tianyu   
+  family: Zhang
+  alternate: '张天宇'  # Example: 王伟
+  # pronunciation: ''  # Example: Wáng Wěi
+  # pronouns: he/him
 postnominals:
   - PhD
   - MIEEE
 status:
   icon: "☕️"
-role: Senior AI Research Scientist
+role: Ph.D Student
 bio: |
-  Alex Johnson is a Senior AI Research Scientist at Meta AI. His research
-  has been published in top conferences like NeurIPS and ICML, with over
-  10,000 citations. Alex is passionate about pushing the boundaries of AI
-  while ensuring ethical development.
+  Tianyu Zhang is currently a Ph.D student at the Japan Advanced Institute of Science and Technology (JAIST) since 2023. He received his master's degree in information science from JAIST in 2023 ,and his bachelor's degree from Xidian University in 2019. His main research interests include computer graphics, machine learning, and interactive user interfaces.
 
 affiliations:
-  - name: Meta AI
-    url: https://ai.meta.com/
+  - name: Japan Advanced Institute of Science and Technology (JAIST)
+    url: https://www.jaist.ac.jp/
 
 links:
   - icon: at-symbol
-    url: mailto:alex.johnson@example.com
+    url: mailto:s2320434@jaist.ac.jp
     label: E-mail Me
-  - icon: brands/x
-    url: https://x.com/example
+  # - icon: brands/x
+  #   url: https://x.com/example
   - icon: brands/github
-    url: https://github.com/example
-  - icon: brands/linkedin
-    url: https://www.linkedin.com/in/example/
-  - icon: academicons/google-scholar
-    url: https://scholar.google.com/citations?user=example
+    url: https://github.com/zty0304
+  # - icon: brands/linkedin
+  #   url: https://www.linkedin.com/in/example/
+  # - icon: academicons/google-scholar
+  #   url: https://scholar.google.com/citations?user=example
   - icon: academicons/orcid
-    url: https://orcid.org/0000-0002-1825-0097
+    url: https://orcid.org/0009-0007-7096-2802
 
 interests:
-  - Large Language Models
-  - Computer Vision
-  - Reinforcement Learning
-  - AI Ethics
+  - Generative AI
+  - Computer Graphics
+  - Human-Computer Interaction
+  - Photography
+  - Hiking
+  - Reading
+  - World of Warcraft (haha)
 
 education:
-  - degree: PhD Computer Science
-    institution: Stanford University
+  - degree: PhD Information Science
+    institution: JAIST
+    start: 2023-10-01
+    end: 2026-09-30
+    # summary: |
+    #   Thesis on scaling laws for neural language models. Published 5 papers in NeurIPS and ICML.
+    # button:
+    #   text: Download dissertation
+    #   url: /resume.pdf
+    #   icon: hero/arrow-down-tray
+  - degree: MS Information Science
+    institution: JAIST
+    start: 2021-10-01
+    end: 2023-09-30
+  - degree: BS Computer Science
+    institution: Xidian University
     start: 2015-09-01
     end: 2019-06-30
-    summary: |
-      Thesis on scaling laws for neural language models. Published 5 papers in NeurIPS and ICML.
-    button:
-      text: Download dissertation
-      url: /resume.pdf
-      icon: hero/arrow-down-tray
-  - degree: MS Computer Science
-    institution: Carnegie Mellon University
-    start: 2013-09-01
-    end: 2015-05-31
-  - degree: BS Computer Science
-    institution: MIT
-    start: 2009-09-01
-    end: 2013-05-31
 
 experience:
-  - role: Senior AI Research Scientist
-    org: Meta AI
-    start: 2020-01-01
-    summary: |
-      Leading research on multimodal AI systems. Contributed to Llama 2 and other open-source models.
-    button:
-      text: View portfolio
-      url: /
-      icon: hero/arrow-down-tray
-  - role: AI Research Intern
-    org: OpenAI
-    start: 2019-06-01
-    end: 2019-12-31
-    summary: |
-      Worked on GPT-3 scaling. Co-authored paper on prompt engineering.
+  # - role: Senior AI Research Scientist
+  #   org: Meta AI
+  #   start: 2020-01-01
+  #   summary: |
+  #     Leading research on multimodal AI systems. Contributed to Llama 2 and other open-source models.
+  #   button:
+  #     text: View portfolio
+  #     url: /
+  #     icon: hero/arrow-down-tray
+  # - role: AI Research Intern
+  #   org: OpenAI
+  #   start: 2019-06-01
+  #   end: 2019-12-31
+  #   summary: |
+  #     Worked on GPT-3 scaling. Co-authored paper on prompt engineering.
 
 skills:
   - name: Technical Skills
@@ -88,9 +88,9 @@ skills:
       - label: Python
         level: 5
       - label: Machine Learning
-        level: 5
-      - label: Cloud Computing
         level: 4
+      - label: Generative AI
+        level: 5
   - name: Research & Communication
     items:
       - label: Academic Writing
@@ -101,16 +101,34 @@ skills:
         level: 4
 
 languages:
-  - name: English
+  - name: Chinese
     level: 5
     label: Native
-  - name: Spanish
-    level: 4
-    label: Fluent
+  - name: English
+    level: 3
+    label: Intermediate
 
 awards:
   - title: Best Paper Award
-    awarder: NeurIPS
-    date: "2022-12-01"
-    summary: Awarded for groundbreaking work on efficient training of large models.
+    awarder: IEVC
+    date: "2026-03-16"
+    # summary: Awarded for groundbreaking work on efficient training of large models.
     icon: hero/trophy
+  - title: Best Paper Award
+    awarder: NICOGRAPH International
+    date: "2025-06-19"
+    # summary: Awarded for groundbreaking work on efficient training of large models.
+    icon: hero/trophy
+  - title: Best Paper Award
+    awarder: NICOGRAPH International
+    date: "2024-06-14"
+    # summary: Awarded for groundbreaking work on efficient training of large models.
+    icon: hero/trophy
+  - title: Best Presentation Award
+    awarder: CGIP
+    date: "2024-01-12"
+    # summary: Awarded for groundbreaking work on efficient training of large models.
+    icon: hero/trophy
+
+
+
