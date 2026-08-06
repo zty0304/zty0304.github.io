@@ -23,8 +23,8 @@ hugoblox:
     # Site meta description for search engines and social sharing
     description: "Tianyu Zhang is a Ph.D. candidate at JAIST researching multimodal generative models, controllable image generation and editing."
     # Social accounts (used for meta tags like Twitter Cards)
-    social:
-      twitter: "MakeOwnable"              # Twitter/X handle for Twitter Cards (without @)
+    #social:
+      #twitter: "MakeOwnable"              # Twitter/X handle for Twitter Cards (without @)
 
   # ────────────────────────────────────────────────────────────────────────────
   # THEME
