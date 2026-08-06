@@ -1,0 +1,44 @@
+{{ define "main" }}
+  <div class="gallery-page gallery-index-page">
+    <header class="gallery-hero">
+      <span class="gallery-eyebrow">Photo Journal</span>
+      <h1>{{ .Title }}</h1>
+      <p>{{ .Params.description }}</p>
+    </header>
+
+    {{ $albums := .RegularPages.ByTitle }}
+    {{ if gt (len $albums) 0 }}
+      <div class="gallery-album-grid" role="list">
+        {{ range $albums }}
+          {{ $pattern := printf "gallery/%s/*" .Params.album }}
+          {{ $images := partial "functions/get_gallery_images.html" $pattern }}
+          <a class="gallery-album-card" href="{{ .RelPermalink }}" role="listitem">
+            <div class="gallery-album-cover">
+              {{ with index $images 0 }}
+                {{ $cover := .Fit "1200x800 webp q85" }}
+                <img src="{{ $cover.RelPermalink }}" width="{{ $cover.Width }}" height="{{ $cover.Height }}" alt="{{ $.Title }} album cover" loading="lazy">
+              {{ else }}
+                <div class="gallery-album-placeholder" aria-hidden="true">
+                  <span>{{ substr .Title 0 1 }}</span>
+                </div>
+              {{ end }}
+              <span class="gallery-photo-count">{{ len $images }} {{ cond (eq (len $images) 1) "photo" "photos" }}</span>
+            </div>
+            <div class="gallery-album-info">
+              <div>
+                <h2>{{ .Title }}</h2>
+                <p>Open album</p>
+              </div>
+              <span class="gallery-album-arrow" aria-hidden="true">↗</span>
+            </div>
+          </a>
+        {{ end }}
+      </div>
+    {{ else }}
+      <div class="gallery-empty-state">
+        <h2>No albums yet</h2>
+        <p>Create a subfolder in <code>assets/gallery/</code> and add photos to publish your first album.</p>
+      </div>
+    {{ end }}
+  </div>
+{{ end }}

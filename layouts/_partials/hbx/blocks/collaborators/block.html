@@ -1,0 +1,39 @@
+{{ $block := .wcBlock }}
+{{ $content := $block.content }}
+{{ $title := "Collaborators" }}
+{{ $subtitle := "" }}
+{{ if and $content (reflect.IsMap $content) }}
+  {{ with index $content "title" }}{{ $title = . }}{{ end }}
+  {{ with index $content "subtitle" }}{{ $subtitle = . }}{{ end }}
+{{ end }}
+{{ $items := site.Data.collaborators | default (slice) }}
+
+<div class="home-collaborators">
+  <div class="home-collaborators-inner">
+    <header class="collaborators-header">
+      <h2 class="collaborators-title">{{ $title }}</h2>
+      {{ with $subtitle }}<p class="collaborators-subtitle">{{ . }}</p>{{ end }}
+    </header>
+
+    <div class="collaborators-grid" role="list">
+      {{ range $items }}
+        {{ $collaborator_name := .name }}
+        <a class="collaborator-card" href="{{ .url | safeURL }}" target="_blank" rel="noopener noreferrer" role="listitem">
+          {{ $image := false }}
+          {{ with .image }}{{ $image = resources.Get . }}{{ end }}
+          {{ with $image }}
+            {{ $avatar := .Fill "112x112 Center webp q88" }}
+            <img class="collaborator-avatar" src="{{ $avatar.RelPermalink }}" width="56" height="56" alt="Portrait of {{ $collaborator_name }}" loading="lazy">
+          {{ else }}
+            <span class="collaborator-monogram" aria-hidden="true">{{ substr $collaborator_name 0 1 }}</span>
+          {{ end }}
+          <span class="collaborator-details">
+            <span class="collaborator-name">{{ .name }}</span>
+            <span class="collaborator-affiliation">{{ .affiliation }}</span>
+          </span>
+          <span class="collaborator-arrow" aria-hidden="true">↗</span>
+        </a>
+      {{ end }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+{{/*
+  Create one gallery page for every direct subfolder in assets/gallery/.
+  Any file can make the folder discoverable; only image resources are rendered.
+*/}}
+{{ $albums := dict }}
+{{ range resources.Match "gallery/*/*" }}
+  {{ $album := path.Base (path.Dir .Name) }}
+  {{ if $album }}
+    {{ $albums = merge $albums (dict $album true) }}
+  {{ end }}
+{{ end }}
+
+{{ range $album, $_ := $albums }}
+  {{ $content := dict "mediaType" "text/markdown" "value" "" }}
+  {{ $params := dict "album" $album }}
+  {{ $page := dict
+    "content" $content
+    "kind" "page"
+    "params" $params
+    "path" $album
+    "title" (humanize $album)
+  }}
+  {{ $.AddPage $page }}
+{{ end }}

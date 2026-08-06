@@ -1,0 +1,25 @@
+{{/*
+  Return gallery images in natural numeric order.
+  For example: photo (1), photo (2), ... photo (10), rather than lexical
+  order: photo (1), photo (10), photo (2).
+*/}}
+{{ $resources := (resources.Match .).ByType "image" }}
+{{ $sortable := slice }}
+
+{{ range $resources }}
+  {{ $base_name := path.BaseName .Name }}
+  {{ $numbers := findRE `[0-9]+` $base_name }}
+  {{ $number := 999999999 }}
+  {{ if gt (len $numbers) 0 }}
+    {{ $number = int (index $numbers (sub (len $numbers) 1)) }}
+  {{ end }}
+  {{ $sort_key := printf "%012d-%s" $number (lower $base_name) }}
+  {{ $sortable = $sortable | append (dict "key" $sort_key "image" .) }}
+{{ end }}
+
+{{ $images := slice }}
+{{ range sort $sortable "key" "asc" }}
+  {{ $images = $images | append .image }}
+{{ end }}
+
+{{ return $images }}

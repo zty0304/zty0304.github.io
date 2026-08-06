@@ -1,0 +1,15 @@
+# Homepage news timeline.
+# Add new items at the top. The `text` field supports Markdown, including
+# **bold text** and [links](https://example.com/).
+
+- date: "2026 · Jul"
+  text: "Successfully passed my **Ph.D. dissertation defense** on July 31, 2026! 🎓"
+
+- date: "2026 · Jul"
+  text: "*Structure-Color Disentangled Anime Hair Synthesis via Flow Line* was **conditionally accepted** by **SIGGRAPH Asia 2026**."
+
+- date: "2025 · Apr"
+  text: "*Sketch-Guided Scene Image Generation with Diffusion Model* was accepted by **Computers & Graphics**."
+
+- date: "2024 · Jan"
+  text: "Received the **Best Presentation Award** at **CGIP 2024** for *Sketch-Guided Text-to-Image Generation with Spatial Control*."

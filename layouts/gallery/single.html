@@ -1,0 +1,134 @@
+{{ define "main" }}
+  {{ $pattern := printf "gallery/%s/*" .Params.album }}
+  {{ $images := partial "functions/get_gallery_images.html" $pattern }}
+
+  <div class="gallery-page gallery-album-page">
+    <header class="gallery-album-header">
+      <a class="gallery-back-link" href="{{ "/gallery/" | relURL }}">&larr; All albums</a>
+      <div class="gallery-album-heading">
+        <div>
+          <span class="gallery-eyebrow">Photo Album</span>
+          <h1>{{ .Title }}</h1>
+        </div>
+        <span class="gallery-album-total">{{ len $images }} {{ cond (eq (len $images) 1) "photo" "photos" }}</span>
+      </div>
+    </header>
+
+    {{ if gt (len $images) 0 }}
+      <div class="gallery-photo-wall">
+        {{ range $images }}
+          {{ $thumb := .Fit "1400x1400 webp q85" }}
+          {{ $alt := humanize (path.BaseName .Name) }}
+          <a class="gallery-photo" href="{{ .RelPermalink }}" data-gallery-item data-full="{{ .RelPermalink }}" data-caption="{{ $alt }}" aria-label="Preview {{ $alt }}">
+            <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ $alt }}" loading="lazy">
+          </a>
+        {{ end }}
+      </div>
+
+      <div class="gallery-lightbox" data-gallery-lightbox role="dialog" aria-modal="true" aria-label="Photo preview" hidden>
+        <div class="gallery-lightbox-backdrop" data-lightbox-close></div>
+        <div class="gallery-lightbox-stage">
+          <button class="gallery-lightbox-button gallery-lightbox-close" type="button" data-lightbox-close aria-label="Close photo preview">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <button class="gallery-lightbox-button gallery-lightbox-previous" type="button" data-lightbox-previous aria-label="Previous photo">
+            <span aria-hidden="true">&larr;</span>
+          </button>
+          <figure class="gallery-lightbox-figure">
+            <img data-lightbox-image src="" alt="">
+            <figcaption class="gallery-lightbox-caption">
+              <span data-lightbox-caption></span>
+              <span data-lightbox-counter></span>
+            </figcaption>
+          </figure>
+          <button class="gallery-lightbox-button gallery-lightbox-next" type="button" data-lightbox-next aria-label="Next photo">
+            <span aria-hidden="true">&rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <script>
+        (() => {
+          const lightbox = document.querySelector('[data-gallery-lightbox]');
+          const items = Array.from(document.querySelectorAll('[data-gallery-item]'));
+          if (!lightbox || !items.length || lightbox.dataset.initialized) return;
+          lightbox.dataset.initialized = 'true';
+
+          const preview = lightbox.querySelector('[data-lightbox-image]');
+          const caption = lightbox.querySelector('[data-lightbox-caption]');
+          const counter = lightbox.querySelector('[data-lightbox-counter]');
+          const previousButton = lightbox.querySelector('[data-lightbox-previous]');
+          const nextButton = lightbox.querySelector('[data-lightbox-next]');
+          const closeButton = lightbox.querySelector('.gallery-lightbox-close');
+          let currentIndex = 0;
+          let previousFocus = null;
+          let touchStartX = 0;
+
+          const showPhoto = (index) => {
+            currentIndex = (index + items.length) % items.length;
+            const item = items[currentIndex];
+            const itemCaption = item.dataset.caption || item.querySelector('img')?.alt || '';
+            preview.src = item.dataset.full || item.href;
+            preview.alt = itemCaption;
+            caption.textContent = itemCaption;
+            counter.textContent = `${currentIndex + 1} / ${items.length}`;
+          };
+
+          const openLightbox = (index) => {
+            previousFocus = document.activeElement;
+            showPhoto(index);
+            lightbox.hidden = false;
+            document.documentElement.classList.add('gallery-lightbox-open');
+            closeButton.focus();
+          };
+
+          const closeLightbox = () => {
+            lightbox.hidden = true;
+            preview.removeAttribute('src');
+            document.documentElement.classList.remove('gallery-lightbox-open');
+            previousFocus?.focus();
+          };
+
+          items.forEach((item, index) => {
+            item.addEventListener('click', (event) => {
+              event.preventDefault();
+              openLightbox(index);
+            });
+          });
+
+          lightbox.querySelectorAll('[data-lightbox-close]').forEach((element) => {
+            element.addEventListener('click', closeLightbox);
+          });
+          previousButton.addEventListener('click', () => showPhoto(currentIndex - 1));
+          nextButton.addEventListener('click', () => showPhoto(currentIndex + 1));
+
+          if (items.length < 2) {
+            previousButton.hidden = true;
+            nextButton.hidden = true;
+          }
+
+          document.addEventListener('keydown', (event) => {
+            if (lightbox.hidden) return;
+            if (event.key === 'Escape') closeLightbox();
+            if (event.key === 'ArrowLeft') showPhoto(currentIndex - 1);
+            if (event.key === 'ArrowRight') showPhoto(currentIndex + 1);
+          });
+
+          lightbox.addEventListener('touchstart', (event) => {
+            touchStartX = event.changedTouches[0].clientX;
+          }, { passive: true });
+          lightbox.addEventListener('touchend', (event) => {
+            const distance = event.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(distance) < 55) return;
+            showPhoto(currentIndex + (distance < 0 ? 1 : -1));
+          }, { passive: true });
+        })();
+      </script>
+    {{ else }}
+      <div class="gallery-empty-state">
+        <h2>This album is ready</h2>
+        <p>Add JPG, PNG, WebP, or GIF files to <code>assets/gallery/{{ .Params.album }}/</code>. They will appear here automatically.</p>
+      </div>
+    {{ end }}
+  </div>
+{{ end }}

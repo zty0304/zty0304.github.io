@@ -1,0 +1,14 @@
+{{- $authors := .Params.authors -}}
+{{- if $authors -}}
+  {{- if not (reflect.IsSlice $authors) -}}
+    {{- $authors = slice $authors -}}
+  {{- end -}}
+  {{- range $index, $raw := $authors -}}
+    {{- $slug := $raw | urlize -}}
+    {{- $profile := partial "functions/get_author_profile" (dict "slug" $slug "title" $raw) -}}
+    {{- $display := $profile.title | default $raw -}}
+    {{- $is_owner := or (eq $slug "me") (eq (lower $display) "tianyu zhang") -}}
+    {{- if gt $index 0 }}, {{ end -}}
+    <span{{ if $is_owner }} class="publication-author-self"{{ end }}>{{ $display }}</span>
+  {{- end -}}
+{{- end -}}

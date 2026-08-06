@@ -1,0 +1,25 @@
+{{ $block := .wcBlock }}
+{{ $content := $block.content }}
+{{ $title := "News" }}
+{{ if and $content (reflect.IsMap $content) }}
+  {{ with index $content "title" }}{{ $title = . }}{{ end }}
+{{ end }}
+{{ $items := site.Data.news | default (slice) }}
+
+<div class="home-news">
+  <div class="home-news-inner">
+    <h2 class="home-news-title">{{ $title }}</h2>
+    {{ if gt (len $items) 0 }}
+      <div class="news-timeline" role="list">
+        {{ range $index, $item := $items }}
+          <article class="news-timeline-item{{ if eq $index 0 }} is-latest{{ end }}" role="listitem">
+            <time class="news-date">{{ $item.date }}</time>
+            <div class="news-text">{{ $item.text | markdownify }}</div>
+          </article>
+        {{ end }}
+      </div>
+    {{ else }}
+      <p class="news-empty">News updates will appear here.</p>
+    {{ end }}
+  </div>
+</div>

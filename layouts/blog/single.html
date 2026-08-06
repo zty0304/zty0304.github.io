@@ -1,0 +1,94 @@
+{{ define "main" }}
+  {{ $current := . }}
+  {{ $posts := where site.RegularPages "Section" "blog" }}
+
+  <div class="blog-reading-shell">
+    <aside class="blog-reading-sidebar blog-posts-sidebar" aria-label="Blog posts">
+      <div class="blog-sidebar-card">
+        <div class="blog-sidebar-heading">
+          <span class="blog-sidebar-kicker">Browse</span>
+          <h2>All Posts</h2>
+        </div>
+        <nav class="blog-post-nav">
+          {{ range $posts.ByDate.Reverse }}
+            <a class="blog-post-nav-link{{ if eq .RelPermalink $current.RelPermalink }} is-current{{ end }}" href="{{ .RelPermalink }}"{{ if eq .RelPermalink $current.RelPermalink }} aria-current="page"{{ end }}>
+              <span>{{ .Title }}</span>
+              <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time>
+            </a>
+          {{ end }}
+        </nav>
+        <a class="blog-all-posts-link" href="{{ "/blog/" | relURL }}">View blog overview <span aria-hidden="true">→</span></a>
+      </div>
+    </aside>
+
+    <aside class="blog-reading-sidebar blog-toc-sidebar" aria-label="Table of contents">
+      <div class="blog-sidebar-card">
+        <div class="blog-sidebar-heading">
+          <span class="blog-sidebar-kicker">Navigate</span>
+          <h2>On This Page</h2>
+        </div>
+        {{ with .Fragments.Headings }}
+          <nav class="blog-article-toc">
+            {{ $current.TableOfContents }}
+          </nav>
+        {{ else }}
+          <p class="blog-sidebar-empty">This post has no section headings.</p>
+        {{ end }}
+      </div>
+    </aside>
+
+    <article class="blog-reading-article">
+      <header class="blog-article-header">
+        <a class="blog-back-link" href="{{ "/blog/" | relURL }}"><span aria-hidden="true">←</span> Blog</a>
+        <h1 data-pagefind-meta="title" data-pagefind-body>{{ .Title }}</h1>
+        {{ with .Params.subtitle }}<p class="blog-article-subtitle">{{ . }}</p>{{ end }}
+        <div class="blog-article-meta">
+          {{ if not .Params.hide_date }}
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          {{ end }}
+          {{ with .Params.authors }}
+            <span aria-hidden="true">·</span>
+            {{ range $index, $slug := . }}
+              {{ if $index }}, {{ end }}
+              {{ $profile := partial "functions/get_author_profile" $slug }}
+              <span>{{ $profile.title }}</span>
+            {{ end }}
+          {{ end }}
+          {{ if ne .Params.reading_time false }}
+            <span aria-hidden="true">·</span>
+            <span>{{ .ReadingTime }} min read</span>
+          {{ end }}
+        </div>
+      </header>
+
+      <div class="blog-article-content prose prose-slate lg:prose-lg dark:prose-invert" data-pagefind-body>
+        {{ .Content }}
+      </div>
+
+      {{ with .GetTerms "tags" }}
+        <footer class="blog-article-tags" aria-label="Post tags">
+          {{ range . }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
+        </footer>
+      {{ end }}
+    </article>
+
+    <aside class="blog-reading-sidebar blog-comments-sidebar" aria-label="Comments">
+      <div class="blog-sidebar-card blog-comments-card">
+        <div class="blog-sidebar-heading">
+          <span class="blog-sidebar-kicker">Discuss</span>
+          <h2>Comments</h2>
+        </div>
+        {{ $comment_provider := trim (site.Params.hugoblox.comments.provider | lower) " " }}
+        {{ if and $comment_provider .Params.commentable }}
+          {{ partial "comments.html" . }}
+        {{ else }}
+          <div class="blog-comments-empty">
+            <span class="blog-comments-icon" aria-hidden="true">✦</span>
+            <p>Comments are not open yet.</p>
+            <span>This space is reserved for future discussions.</span>
+          </div>
+        {{ end }}
+      </div>
+    </aside>
+  </div>
+{{ end }}

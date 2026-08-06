@@ -1,0 +1,98 @@
+schema: hugoblox/author/v1
+slug: me
+is_owner: true
+name:
+  display: Tianyu Zhang
+  given: Tianyu   
+  family: Zhang
+  alternate: '张天宇'  # Example: 王伟
+  # pronunciation: ''  # Example: Wáng Wěi
+  # pronouns: he/him
+postnominals:
+  - PhD
+  - MIEEE
+status:
+  icon: "☕️"
+role: Ph.D Student
+bio: |
+  Tianyu Zhang is a Ph.D. candidate in Information Science at the Japan Advanced Institute of Science and Technology (JAIST), under the supervision of Professor [Haoran Xie](https://www.jaist.ac.jp/~xie/). He is expected to graduate in September 2026. He received his master’s degree in Information Science from JAIST in 2023, and his bachelor’s degree in Computer Science from Xidian University in 2019. His research focuses on multimodal generative models, controllable image generation and editing, and AI for anime and illustration. He develops generative systems that translate human intent, including sketches, structural guidance, and artistic constraints, into controllable visual content.
+
+affiliations:
+  - name: Japan Advanced Institute of Science and Technology (JAIST)
+    url: https://www.jaist.ac.jp/
+
+links:
+  - icon: at-symbol
+    url: mailto:kusurizhang@gmail.com
+    label: E-mail Me
+  - icon: brands/github
+    url: https://github.com/zty0304
+  - icon: academicons/orcid
+    url: https://orcid.org/0009-0007-7096-2802
+
+interests:
+  - Generative AI
+  - Computer Graphics
+  - Human-Computer Interaction
+  - Photography
+  - Hiking
+  - Reading
+  - World of Warcraft (haha)
+
+education:
+  - degree: PhD Information Science
+    institution: JAIST
+    start: 2023-10-01
+    end: 2026-09-30
+  - degree: MS Information Science
+    institution: JAIST
+    start: 2021-10-01
+    end: 2023-09-30
+  - degree: BS Computer Science
+    institution: Xidian University
+    start: 2015-09-01
+    end: 2019-06-30
+
+skills:
+  - name: Technical Skills
+    items:
+      - label: Python
+        level: 5
+      - label: Machine Learning
+        level: 4
+      - label: Generative AI
+        level: 5
+  - name: Research & Communication
+    items:
+      - label: Academic Writing
+        level: 5
+      - label: Conference Presentations
+        level: 4
+      - label: Grant Proposals
+        level: 4
+
+languages:
+  - name: Chinese
+    level: 5
+    label: Native
+  - name: English
+    level: 3
+    label: Intermediate
+
+awards:
+  - title: Best Paper Award
+    awarder: IEVC
+    date: "2026-03-16"
+    icon: hero/trophy
+  - title: Best Paper Award
+    awarder: NICOGRAPH International
+    date: "2025-06-19"
+    icon: hero/trophy
+  - title: Best Paper Award
+    awarder: NICOGRAPH International
+    date: "2024-06-14"
+    icon: hero/trophy
+  - title: Best Presentation Award
+    awarder: CGIP
+    date: "2024-01-12"
+    icon: hero/trophy

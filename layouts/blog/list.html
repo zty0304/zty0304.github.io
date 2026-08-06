@@ -1,0 +1,45 @@
+{{ define "main" }}
+  <div class="blog-index-page">
+    <header class="blog-index-hero">
+      <span class="blog-index-eyebrow">Notes &amp; Ideas</span>
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.description }}<p>{{ . }}</p>{{ end }}
+    </header>
+
+    {{ $posts := .RegularPages.ByDate.Reverse }}
+    {{ if gt (len $posts) 0 }}
+      <div class="blog-index-grid" role="list">
+        {{ range $posts }}
+          <article class="blog-index-card" role="listitem">
+            <div class="blog-index-card-body">
+              {{ with .GetTerms "tags" }}
+                <div class="blog-index-tags" aria-label="Tags">
+                  {{ range first 2 . }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
+                </div>
+              {{ end }}
+
+              <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+              {{ with .Params.subtitle }}<p class="blog-index-subtitle">{{ . }}</p>{{ end }}
+              <p class="blog-index-summary">{{ (.Params.summary | default .Summary) | plainify | truncate 190 }}</p>
+
+              <div class="blog-index-card-footer">
+                <div class="blog-index-meta">
+                  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+                  <span aria-hidden="true">·</span>
+                  <span>{{ .ReadingTime }} min read</span>
+                </div>
+                <a class="blog-index-read-more" href="{{ .RelPermalink }}">Read article <span aria-hidden="true">→</span></a>
+              </div>
+            </div>
+          </article>
+        {{ end }}
+      </div>
+    {{ else }}
+      <div class="blog-index-empty">
+        <span aria-hidden="true">✦</span>
+        <h2>No posts yet</h2>
+        <p>New notes and ideas will appear here.</p>
+      </div>
+    {{ end }}
+  </div>
+{{ end }}
