@@ -13,9 +13,9 @@ postnominals:
   - MIEEE
 status:
   icon: "☕️"
-role: Ph.D Student
+role: Researcher
 bio: |
-  Tianyu Zhang is a Ph.D. candidate in Information Science at the Japan Advanced Institute of Science and Technology (JAIST), under the supervision of Professor [Haoran Xie](https://www.jaist.ac.jp/~xie/). He is expected to graduate in September 2026. He received his master’s degree in Information Science from JAIST in 2023, and his bachelor’s degree in Computer Science from Xidian University in 2019. His research focuses on multimodal generative models, controllable image generation and editing, and AI for anime and illustration. He develops generative systems that translate human intent, including sketches, structural guidance, and artistic constraints, into controllable visual content.
+  Tianyu Zhang is a researcher at the Japan Advanced Institute of Science and Technology (JAIST). He received his Ph.D. in Information Science from JAIST in September 2026 under the supervision of Professor [Haoran Xie](https://www.jaist.ac.jp/~xie/). He also received his master’s degree in Information Science from JAIST in 2023, and his bachelor’s degree in Computer Science from Xidian University in 2019. His research focuses on multimodal generative models, controllable image generation and editing, and AI for anime and illustration. He develops generative systems that translate human intent, including sketches, structural guidance, and artistic constraints, into controllable visual content.
 
 affiliations:
   - name: Japan Advanced Institute of Science and Technology (JAIST)
