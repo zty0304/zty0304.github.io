@@ -43,7 +43,6 @@ papers:
     authors: [Tianyu Zhang, I-Chao Shen, Haoran Xie]
     venue: SIGGRAPH Asia 2026
     venue_short: SIGGRAPH Asia 2026
-    details: Conditionally accepted
     group: conference
     date: 2026-12
     selected: true
@@ -51,6 +50,8 @@ papers:
     summary: >-
       Flow lines — a sparse stroke representation of wisp geometry and color intent — and a
       dual-LoRA framework that synthesizes anime hair with disentangled structure and color.
+    links:
+      doi: 10.1145/3829340.3842227
 
   - title: Sketch-Based Rust Texture Generation Using Diffusion Model
     authors: [Yongming Zhang, Tianyu Zhang, Kazunori Miyata, Haoran Xie]
