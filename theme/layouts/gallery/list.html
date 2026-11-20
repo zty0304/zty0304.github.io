@@ -1,0 +1,36 @@
+{{ define "main" }}
+{{- $albums := .RegularPages.ByWeight -}}
+{{- $total := 0 }}{{ range $albums }}{{ $total = add $total (len (partial "album-images.html" .Params.album)) }}{{ end -}}
+<div class="wrap page">
+  {{ partial "page-head.html" (dict "title" (site.Data.gallery.title | default .Title) "intro" site.Data.gallery.intro "meta" (printf "%d albums · %d photos" (len $albums) $total)) }}
+
+  {{- with $albums }}
+  <ul class="albums">
+    {{- range $a := . }}
+      {{- $imgs := partial "album-images.html" .Params.album }}
+      {{- $cover := "" }}{{ with $imgs }}{{ $cover = index . 0 }}{{ end }}
+      {{- with .Params.cover }}
+        {{- with resources.GetMatch (printf "gallery/%s/%s" $a.Params.album .) }}{{ $cover = . }}{{ end }}
+      {{- end }}
+      <li data-reveal>
+        <a class="album" href="{{ .RelPermalink }}">
+          <span class="album-cover">
+            {{- with $cover }}
+              {{- $t := .Fill "960x640 webp q80" }}
+              <img src="{{ $t.RelPermalink }}" width="{{ $t.Width }}" height="{{ $t.Height }}" alt="" loading="lazy" decoding="async">
+            {{- end }}
+          </span>
+          <span class="album-info">
+            <span class="album-title">{{ .Title }}</span>
+            <span class="album-count">{{ len $imgs }} photos</span>
+          </span>
+          {{- with .Params.description }}<span class="album-desc">{{ . }}</span>{{ end }}
+        </a>
+      </li>
+    {{- end }}
+  </ul>
+  {{- else }}
+  <p class="empty">No albums yet. Add a folder of photos to <code>pages/gallery/</code>.</p>
+  {{- end }}
+</div>
+{{ end }}

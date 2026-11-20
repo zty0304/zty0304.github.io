@@ -1,0 +1,15 @@
+{{- /*
+  Images of one album folder in natural order: "photo (2)" before "photo (10)".
+  Usage: partial "album-images.html" "hokuriku"
+*/ -}}
+{{- $sortable := slice -}}
+{{- range (resources.Match (printf "gallery/%s/*" .)).ByType "image" -}}
+  {{- $base := path.BaseName .Name -}}
+  {{- $nums := findRE `[0-9]+` $base -}}
+  {{- $n := 999999999 -}}
+  {{- with $nums }}{{ $n = int (index . (sub (len .) 1)) }}{{ end -}}
+  {{- $sortable = $sortable | append (dict "key" (printf "%012d-%s" $n (lower $base)) "img" .) -}}
+{{- end -}}
+{{- $out := slice -}}
+{{- range sort $sortable "key" "asc" }}{{ $out = $out | append .img }}{{ end -}}
+{{- return $out -}}

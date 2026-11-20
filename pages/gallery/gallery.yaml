@@ -1,0 +1,33 @@
+# ═══════════════════════════════════════════════════════════════
+#  相册 · Gallery
+#  Every folder next to this file is an album: drop photos into
+#  pages/gallery/<album>/ and it appears at /gallery/<album>/.
+# ═══════════════════════════════════════════════════════════════
+
+title: Gallery
+intro: Moments from research, conferences, travel and everyday life.
+
+# Optional details per album (key = folder name, lower case)
+#   title        display name (default: folder name)
+#   description  one line under the title
+#   order        lower comes first (default: alphabetical)
+#   cover        file used as the cover (default: first photo)
+albums:
+  hokuriku:
+    title: Hokuriku
+    order: 1
+    cover: hokuriku (11).jpg
+  kamikochi:
+    title: Kamikochi
+    order: 2
+    cover: kamikochi (3).jpg
+
+# Photos shown on the homepage, in this order — "folder/file name"
+home_per_row: 3
+home:
+  - hokuriku/hokuriku (11).jpg
+  - hokuriku/hokuriku (10).jpg
+  - hokuriku/hokuriku (2).jpg
+  - hokuriku/hokuriku (20).jpg
+  - hokuriku/hokuriku (16).jpg
+  - kamikochi/kamikochi (1).jpg

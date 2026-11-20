@@ -1,0 +1,8 @@
+{{- with site.Data.home.experience }}
+  {{- $body := "" }}
+  {{- range . }}
+    {{- $org := .org }}{{ with .url }}{{ $org = printf `<a href="%s">%s</a>` . $org }}{{ end }}
+    {{- $body = printf `%s<li data-reveal><span class="row-main">%s<span class="row-sub">%s</span></span><span class="date">%s</span></li>` $body .role $org .period }}
+  {{- end }}
+  {{- partial "section.html" (dict "id" "experience" "title" "Experience" "body" (printf `<ul class="rows timeline">%s</ul>` $body | safeHTML)) }}
+{{- end }}

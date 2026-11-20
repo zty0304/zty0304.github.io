@@ -1,0 +1,12 @@
+{{ define "main" }}
+<div class="wrap page">
+  {{ partial "page-head.html" (dict "title" (site.Data.blog.title | default .Title) "intro" site.Data.blog.intro) }}
+  {{- with .RegularPages.ByDate.Reverse }}
+  <ol class="post-list">
+    {{- range . }}{{ partial "post-item.html" . }}{{ end }}
+  </ol>
+  {{- else }}
+  <p class="empty">No posts yet.</p>
+  {{- end }}
+</div>
+{{ end }}

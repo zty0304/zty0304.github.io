@@ -1,0 +1,57 @@
+{{ define "main" }}
+{{- $data := site.Data.publications -}}
+{{- $all := $data.papers -}}
+{{- $from := int ($data.years_from | default 2026) -}}
+
+{{- /* Year buttons: one per year >= $from (newest first), then "Earlier" */ -}}
+{{- $years := slice -}}
+{{- range $all }}{{ $y := int (substr (string .date) 0 4) }}{{ if and (ge $y $from) (not (in $years $y)) }}{{ $years = $years | append $y }}{{ end }}{{ end -}}
+{{- $years = sort $years "value" "desc" -}}
+{{- $earlier := 0 }}{{ range $all }}{{ if lt (int (substr (string .date) 0 4)) $from }}{{ $earlier = add $earlier 1 }}{{ end }}{{ end -}}
+
+<div class="wrap page">
+  {{ partial "page-head.html" (dict "title" ($data.title | default .Title) "intro" $data.intro "meta" (printf "%d entries" (len $all))) }}
+
+  <div class="pub-controls" data-reveal>
+    <div class="filter" role="group" aria-label="Filter by year">
+      <button type="button" class="is-active" aria-pressed="true" data-year-filter="all">All<span class="count">{{ len $all }}</span></button>
+      {{- range $years }}
+        {{- $y := . }}
+        {{- $n := 0 }}{{ range $all }}{{ if eq (int (substr (string .date) 0 4)) $y }}{{ $n = add $n 1 }}{{ end }}{{ end }}
+        <button type="button" aria-pressed="false" data-year-filter="{{ $y }}">{{ $y }}<span class="count">{{ $n }}</span></button>
+      {{- end }}
+      {{- if $earlier }}
+        <button type="button" aria-pressed="false" data-year-filter="earlier">Before {{ $from }}<span class="count">{{ $earlier }}</span></button>
+      {{- end }}
+    </div>
+
+    <nav class="jump" aria-label="Publication types">
+      {{- range $data.groups }}
+        {{- $n := len (where $all "group" .id) }}
+        {{- if $n }}<a href="#{{ .id }}" data-jump="{{ .id }}">{{ .title }}<span class="count" data-jump-count>{{ $n }}</span></a>{{ end }}
+      {{- end }}
+    </nav>
+  </div>
+
+  {{- range $g := $data.groups }}
+    {{- with sort (where $all "group" $g.id) "date" "desc" }}
+    <section class="pub-group" id="{{ $g.id }}" data-pub-group>
+      <h2>{{ $g.title }}</h2>
+      <ol class="pub-list">
+        {{- $prevYear := "" }}
+        {{- range . }}
+          {{- $year := substr (string .date) 0 4 }}
+          {{- $bucket := cond (lt (int $year) $from) "earlier" $year }}
+          <li data-year="{{ $bucket }}">
+            <span class="year{{ if eq $year $prevYear }} repeat{{ end }}">{{ $year }}</span>
+            {{ partial "pub.html" (dict "paper" . "variant" "list") }}
+          </li>
+          {{- $prevYear = $year }}
+        {{- end }}
+      </ol>
+    </section>
+    {{- end }}
+  {{- end }}
+  <p class="empty" data-pub-empty hidden>No publications for this year.</p>
+</div>
+{{ end }}

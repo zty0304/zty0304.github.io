@@ -1,0 +1,10 @@
+{{- $all := site.Data.publications.papers -}}
+{{- with sort (where $all "selected" true) "date" "desc" }}
+  {{- $body := "" }}
+  {{- range $i, $p := . }}{{ $body = printf "%s%s" $body (partial "pub.html" (dict "paper" $p "variant" "feature" "index" (add $i 1))) }}{{ end }}
+  {{- partial "section.html" (dict
+      "id" "publications"
+      "title" "Selected publications"
+      "more" (dict "url" "/publications/" "label" (printf "All %d publications" (len $all)))
+      "body" (printf `<div class="pub-features">%s</div>` $body | safeHTML)) }}
+{{- end }}

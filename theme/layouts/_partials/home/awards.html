@@ -1,0 +1,7 @@
+{{- with site.Data.home.awards }}
+  {{- $body := "" }}
+  {{- range . }}
+    {{- $body = printf `%s<li data-reveal><span class="award-icon">%s</span><span class="row-main">%s<span class="row-sub">%s</span></span><span class="date">%s</span></li>` $body (partial "icon.html" "award") .title .by .date }}
+  {{- end }}
+  {{- partial "section.html" (dict "id" "awards" "title" "Awards" "body" (printf `<ul class="rows awards">%s</ul>` $body | safeHTML)) }}
+{{- end }}

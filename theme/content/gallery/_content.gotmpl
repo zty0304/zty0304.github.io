@@ -1,0 +1,21 @@
+{{/*
+  One album page per folder in assets/gallery/. Optional title/description/order
+  come from data/gallery.yaml → albums.<folder>.
+*/}}
+{{ $albums := dict }}
+{{ range resources.Match "gallery/*/*" }}
+  {{ $album := path.Base (path.Dir .Name) }}
+  {{ with $album }}{{ $albums = merge $albums (dict . true) }}{{ end }}
+{{ end }}
+{{ $meta := site.Data.gallery.albums | default dict }}
+{{ range $album, $_ := $albums }}
+  {{ $m := index $meta (lower $album) | default dict }}
+  {{ $.AddPage (dict
+    "kind" "page"
+    "path" (lower $album)
+    "title" ($m.title | default (humanize $album))
+    "weight" ($m.order | default 100)
+    "params" (dict "album" $album "description" $m.description "cover" $m.cover)
+    "content" (dict "mediaType" "text/markdown" "value" "")
+  ) }}
+{{ end }}

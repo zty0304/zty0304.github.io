@@ -1,0 +1,21 @@
+{{ define "main" }}
+<article class="wrap page article">
+  <a class="back" href="{{ "/blog/" | relURL }}">{{ partial "icon.html" "arrow-left" }}Blog</a>
+  <header class="article-head">
+    <h1>{{ .Title }}</h1>
+    {{- with .Params.subtitle }}<p class="page-intro">{{ . }}</p>{{ end }}
+    <p class="page-meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      · {{ .ReadingTime }} min read
+      {{- with .Params.tags }} · {{ delimit . ", " }}{{ end }}
+    </p>
+  </header>
+  <div class="prose article-body">
+    {{ .Content }}
+  </div>
+  <nav class="article-nav" aria-label="More posts">
+    {{- with .PrevInSection }}<a href="{{ .RelPermalink }}">{{ partial "icon.html" "arrow-left" }}{{ .Title }}</a>{{ else }}<span></span>{{ end }}
+    {{- with .NextInSection }}<a href="{{ .RelPermalink }}">{{ .Title }}{{ partial "icon.html" "arrow-right" }}</a>{{ end }}
+  </nav>
+</article>
+{{ end }}

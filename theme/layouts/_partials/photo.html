@@ -1,0 +1,19 @@
+{{- /*
+  One tile in a justified photo row. Width grows with the photo's aspect ratio.
+  Usage: partial "photo.html" (dict "img" $resource "href" "/gallery/x/" "lightbox" true)
+*/ -}}
+{{- $img := .img -}}
+{{- $thumb := $img.Resize "960x webp q80" -}}
+{{- $alt := humanize (path.BaseName $img.Name) -}}
+{{- $ratio := div (float $img.Width) $img.Height -}}
+{{- if .lightbox }}
+  {{- $full := $img.Resize "2400x webp q85" }}
+  {{- if lt $img.Width 2400 }}{{ $full = $img.Resize (printf "%dx webp q88" $img.Width) }}{{ end }}
+<a class="photo" href="{{ $full.RelPermalink }}" data-lightbox-item data-caption="{{ $alt }}" style="--r:{{ $ratio }}">
+  <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+</a>
+{{- else }}
+<a class="photo" href="{{ .href }}" style="--r:{{ $ratio }}">
+  <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+</a>
+{{- end }}

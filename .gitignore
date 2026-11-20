@@ -70,3 +70,7 @@ npm-debug.log*
 
 # Local verification builds
 .tmp-*/
+
+# Old Hugo Blox files kept for reference (safe to delete)
+_legacy-hugoblox/
+.history/

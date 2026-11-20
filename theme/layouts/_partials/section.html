@@ -1,0 +1,10 @@
+{{- /* Section shell. Usage: partial "section.html" (dict "id" "news" "title" "News" "more" (dict "url" "/x/" "label" "All") "body" $html) */ -}}
+<section class="section" id="{{ .id }}">
+  <div class="wrap section-inner">
+    <header class="section-head" data-reveal>
+      <h2>{{ .title }}</h2>
+      {{- with .more }}<a class="more" href="{{ .url | relURL }}">{{ .label }} {{ partial "icon.html" "arrow-right" }}</a>{{ end }}
+    </header>
+    <div class="section-body">{{ .body }}</div>
+  </div>
+</section>

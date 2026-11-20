@@ -1,0 +1,8 @@
+{{ define "main" }}
+<div class="wrap page">
+  {{ partial "page-head.html" (dict "title" .Title "intro" .Description) }}
+  <ol class="post-list">
+    {{- range .RegularPages.ByDate.Reverse }}{{ partial "post-item.html" . }}{{ end }}
+  </ol>
+</div>
+{{ end }}

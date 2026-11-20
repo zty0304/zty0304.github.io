@@ -1,0 +1,20 @@
+{{- $g := site.Data.gallery -}}
+{{- $items := slice -}}
+{{- range $g.home -}}
+  {{- $album := path.Dir . -}}
+  {{- with resources.GetMatch (printf "gallery/%s" .) -}}
+    {{- $items = $items | append (dict "img" . "href" (printf "/gallery/%s/" (lower $album) | relURL)) -}}
+  {{- else -}}
+    {{- warnf "gallery.yaml → home: photo not found: pages/gallery/%s" . -}}
+  {{- end -}}
+{{- end -}}
+{{- with $items }}
+  {{- $per := $g.home_per_row | default 3 }}
+  {{- $body := "" }}
+  {{- range $i := seq 0 $per (sub (len .) 1) }}
+    {{- $row := "" }}
+    {{- range first $per (after $i $items) }}{{ $row = printf "%s%s" $row (partial "photo.html" .) }}{{ end }}
+    {{- $body = printf `%s<div class="photo-strip-row" data-reveal>%s</div>` $body $row }}
+  {{- end }}
+  {{- partial "section.html" (dict "id" "gallery" "title" "Gallery" "more" (dict "url" "/gallery/" "label" "All albums") "body" (printf `<div class="photo-strip">%s</div>` $body | safeHTML)) }}
+{{- end }}

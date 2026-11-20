@@ -1,0 +1,26 @@
+{{- $h := site.Data.home -}}
+{{- $n := $h.news_count | default 5 -}}
+{{- with $h.news }}
+  {{- $body := "" }}
+  {{- range $i, $e := . }}
+    {{- $parts := split (strings.TrimSpace (string $e.date)) " " }}
+    {{- $date := "" }}
+    {{- if eq (len $parts) 2 }}
+      {{- $date = printf `<span class="news-m">%s</span><span class="news-y">%s</span>` (index $parts 0) (index $parts 1) }}
+    {{- else }}
+      {{- $date = printf `<span class="news-m">%s</span>` $e.date }}
+    {{- end }}
+    {{- $node := `<span class="news-dot"></span>` }}
+    {{- with $e.icon }}{{ $node = printf `<span class="news-emoji">%s</span>` (. | emojify) }}{{ end }}
+    {{- $cls := "news-item" }}
+    {{- if eq $i 0 }}{{ $cls = printf "%s is-latest" $cls }}{{ end }}
+    {{- $attrs := "data-reveal" }}
+    {{- if ge $i $n }}{{ $cls = printf "%s is-older" $cls }}{{ $attrs = "data-news-older hidden" }}{{ end }}
+    {{- $body = printf `%s<li class="%s" %s><time class="news-date">%s</time><span class="news-node" aria-hidden="true">%s</span><div class="news-text">%s</div></li>` $body $cls $attrs $date $node ($e.text | markdownify | emojify) }}
+  {{- end }}
+  {{- $more := "" }}
+  {{- if gt (len .) $n }}
+    {{- $more = printf `<button type="button" class="news-more" data-news-more aria-expanded="false">Show earlier news <span class="count">%d</span></button>` (sub (len .) $n) }}
+  {{- end }}
+  {{- partial "section.html" (dict "id" "news" "title" "News" "body" (printf `<ol class="news">%s</ol>%s` $body $more | safeHTML)) }}
+{{- end }}

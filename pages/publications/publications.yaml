@@ -1,0 +1,387 @@
+# ═══════════════════════════════════════════════════════════════
+#  论文 · Publications — every publication, one file.
+#  Teaser figures live in pages/publications/figures/.
+#
+#  group     which section it is listed under (see `groups` below)
+#  date      YYYY-MM, used for ordering (newest first) and year filters
+#  selected  true → also shown under "Selected publications" on the homepage
+#  image     teaser figure, e.g. figures/my-paper.jpg (used on the homepage)
+#  venue_short  short venue label shown on the homepage figure, e.g. SIGGRAPH Asia 2026
+#  summary   one or two sentences, shown on the homepage
+#  award     shown as a small marker next to the venue
+#  links     any of: pdf, doi, arxiv, code, project, video, slides, poster
+#  bibtex    optional; adds a "BibTeX" button with copy
+#
+#  Your own name (from home.yaml) is highlighted automatically, and
+#  collaborators (home.yaml) are linked automatically.
+# ═══════════════════════════════════════════════════════════════
+
+title: Publications
+intro: Journal articles, conference papers and academic presentations.
+
+# Year buttons: each year from this one on gets its own button;
+# everything older is grouped under "Earlier".
+years_from: 2026
+
+# Sections on the Publications page, in this order (top to bottom)
+groups:
+  - id: journal
+    title: Journal Articles
+  - id: conference
+    title: International Conference Papers
+  - id: presentation
+    title: International Symposium & Conference Presentations
+  - id: domestic
+    title: Domestic Conference Presentations
+  - id: preprint
+    title: Preprints
+
+papers:
+
+  # ── International conference papers ─────────────────────────
+  - title: Structure-Color Disentangled Anime Hair Synthesis via Flow Line
+    authors: [Tianyu Zhang, I-Chao Shen, Haoran Xie]
+    venue: SIGGRAPH Asia 2026
+    venue_short: SIGGRAPH Asia 2026
+    details: Conditionally accepted
+    group: conference
+    date: 2026-12
+    selected: true
+    image: figures/flowline-hair.jpg
+    summary: >-
+      Flow lines — a sparse stroke representation of wisp geometry and color intent — and a
+      dual-LoRA framework that synthesizes anime hair with disentangled structure and color.
+
+  - title: Sketch-Based Rust Texture Generation Using Diffusion Model
+    authors: [Yongming Zhang, Tianyu Zhang, Kazunori Miyata, Haoran Xie]
+    venue: 9th IIEEJ International Conference on Image Electronics and Visual Computing (IEVC 2026)
+    details: Hiroshima, Japan
+    award: Best Paper Award
+    group: conference
+    date: 2026-03
+    links:
+      pdf: https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&arnumber=11508591
+      doi: 10.1109/IEVC69170.2026.11508591
+    bibtex: |
+      @inproceedings{zhang2026rust,
+        title = {Sketch-Based Rust Texture Generation Using Diffusion Model},
+        author = {Zhang, Yongming and Zhang, Tianyu and Miyata, Kazunori and Xie, Haoran},
+        booktitle = {2026 IIEEJ International Conference on Image Electronics and Visual Computing (IEVC)},
+        pages = {1--4},
+        year = {2026},
+        doi = {10.1109/IEVC69170.2026.11508591},
+        publisher = {IEEE}
+      }
+
+  - title: Sketch-Guided Anime Hair Editing Using Multimodal Diffusion Transformer
+    authors: [Tianyu Zhang, I-Chao Shen, Haoran Xie]
+    venue: The 40th Annual AAAI Conference on Artificial Intelligence (AAAI 2026)
+    details: Student Abstract and Poster Program, Singapore
+    group: conference
+    date: 2026-01
+    links:
+      pdf: https://ojs.aaai.org/index.php/AAAI/article/download/42308/46269
+      doi: 10.1609/aaai.v40i48.42308
+    bibtex: |
+      @article{zhang2026animehair,
+        title = {Sketch-Guided Anime Hair Editing Using Multimodal Diffusion Transformer (Student Abstract)},
+        author = {Zhang, Tianyu and Shen, I-Chao and Xie, Haoran},
+        journal = {Proceedings of the AAAI Conference on Artificial Intelligence},
+        volume = {40},
+        number = {48},
+        pages = {41465--41467},
+        year = {2026},
+        doi = {10.1609/aaai.v40i48.42308}
+      }
+
+  - title: Interactive Drawing Guidance for Anime Illustrations with Diffusion Model
+    authors: [Chuang Chen, Xiaoxuan Xie, Yongming Zhang, Tianyu Zhang, Haoran Xie]
+    venue: NICOGRAPH International 2025
+    details: Kanazawa, Japan
+    award: Best Paper Award
+    group: conference
+    date: 2025-06
+    links:
+      pdf: https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&arnumber=11096517
+      doi: 10.1109/NICOInt67466.2025.00011
+    bibtex: |
+      @inproceedings{chen2025interactive,
+        title = {Interactive Drawing Guidance for Anime Illustrations with Diffusion Model},
+        author = {Chen, Chuang and Xie, Xiaoxuan and Zhang, Yongming and Zhang, Tianyu and Xie, Haoran},
+        booktitle = {2025 Nicograph International (NICOInt)},
+        pages = {1--8},
+        year = {2025},
+        doi = {10.1109/NICOInt67466.2025.00011},
+        publisher = {IEEE}
+      }
+
+  - title: "TexControl: Sketch-Based Two-Stage Fashion Image Generation Using Diffusion Model"
+    authors: [Yongming Zhang, Tianyu Zhang, Haoran Xie]
+    venue: NICOGRAPH International 2024
+    details: Tokyo, Japan
+    award: Best Paper Award
+    group: conference
+    date: 2024-06
+    links:
+      pdf: https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&arnumber=10614465
+      doi: 10.1109/NICOInt62634.2024.00021
+    bibtex: |
+      @inproceedings{zhang2024texcontrol,
+        title = {TexControl: Sketch-Based Two-Stage Fashion Image Generation Using Diffusion Model},
+        author = {Zhang, Yongming and Zhang, Tianyu and Xie, Haoran},
+        booktitle = {2024 Nicograph International (NicoInt)},
+        pages = {64--68},
+        year = {2024},
+        doi = {10.1109/NICOInt62634.2024.00021},
+        publisher = {IEEE}
+      }
+
+  - title: Sketch-Guided Text-to-Image Generation with Spatial Control
+    authors: [Tianyu Zhang, Haoran Xie]
+    venue: 2nd International Conference on Computer Graphics and Image Processing (CGIP 2024)
+    details: Kyoto, Japan
+    award: Best Presentation Award
+    group: conference
+    date: 2024-01
+    links:
+      pdf: https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&arnumber=10533385
+      doi: 10.1109/CGIP62525.2024.00035
+    bibtex: |
+      @inproceedings{zhang2024spatial,
+        title = {Sketch-Guided Text-to-Image Generation with Spatial Control},
+        author = {Zhang, Tianyu and Xie, Haoran},
+        booktitle = {2024 2nd International Conference on Computer Graphics and Image Processing (CGIP)},
+        pages = {153--159},
+        year = {2024},
+        doi = {10.1109/CGIP62525.2024.00035},
+        publisher = {IEEE}
+      }
+
+  - title: "SGDraw: Scene Graph Drawing Interface Using Object-Oriented Representation"
+    authors: [Tianyu Zhang, Xusheng Du, Chia-Ming Chang, Xi Yang, Haoran Xie]
+    venue: 25th International Conference on Human-Computer Interaction (HCI International 2023)
+    details: Denmark
+    group: conference
+    date: 2023-07
+    links:
+      pdf: https://link.springer.com/content/pdf/10.1007/978-3-031-48044-7_16
+      doi: 10.1007/978-3-031-48044-7_16
+    bibtex: |
+      @inproceedings{zhang2023sgdraw,
+        title = {SGDraw: Scene Graph Drawing Interface Using Object-Oriented Representation},
+        author = {Zhang, Tianyu and Du, Xusheng and Chang, Chia-Ming and Yang, Xi and Xie, Haoran},
+        booktitle = {International Conference on Human-Computer Interaction},
+        pages = {211--226},
+        year = {2023},
+        organization = {Springer}
+      }
+
+  - title: Interactive Drawing Interface for Editing Scene Graph
+    authors: [Tianyu Zhang, Xusheng Du, Chia-Ming Chang, Xi Yang, Haoran Xie]
+    venue: 21st International Conference on Cyberworlds (CW 2022)
+    details: Poster, Kanazawa, Japan
+    group: conference
+    date: 2022-09
+    links:
+      pdf: https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&arnumber=9937327
+      doi: 10.1109/CW55638.2022.00041
+    bibtex: |
+      @inproceedings{zhang2022scenegraph,
+        title = {Interactive Drawing Interface for Editing Scene Graph},
+        author = {Zhang, Tianyu and Du, Xusheng and Chang, Chia-Ming and Yang, Xi and Xie, Haoran},
+        booktitle = {2022 International Conference on Cyberworlds (CW)},
+        pages = {171--172},
+        year = {2022},
+        doi = {10.1109/CW55638.2022.00041},
+        publisher = {IEEE}
+      }
+
+  # ── Journal articles ────────────────────────────────────────
+  - title: Sketch-Guided Scene Image Generation with Diffusion Model
+    authors: [Tianyu Zhang, Xiaoxuan Xie, Xusheng Du, Haoran Xie]
+    venue: Computers & Graphics, 129, 104226
+    venue_short: Computers & Graphics 2025
+    group: journal
+    date: 2025-04
+    selected: true
+    image: figures/sketch-scene.jpg
+    summary: >-
+      A sketch-guided framework that generates multi-object scene images by combining
+      object-level generation with scene-level composition.
+    links:
+      pdf: https://dl.acm.org/doi/10.1016/j.cag.2025.104226
+      doi: 10.1016/j.cag.2025.104226
+      arxiv: "2407.06469"
+    bibtex: |
+      @article{zhang2025sketch,
+        title = {Sketch-guided scene image generation with diffusion model},
+        author = {Zhang, Tianyu and Xie, Xiaoxuan and Du, Xusheng and Xie, Haoran},
+        journal = {Computers \& Graphics},
+        volume = {129},
+        pages = {104226},
+        year = {2025},
+        publisher = {Elsevier}
+      }
+
+  - title: "DiffSmoke: Two-Stage Sketch-Based Smoke Illustration Design Using Diffusion Models"
+    authors: [Hengyuan Chang, Tianyu Zhang, Syuhei Sato, Haoran Xie]
+    venue: IEEE Access, 13, 44997–45009
+    group: journal
+    date: 2025-04
+    links:
+      pdf: https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&arnumber=10912463
+      doi: 10.1109/ACCESS.2025.3548433
+    bibtex: |
+      @article{chang2025diffsmoke,
+        title = {DiffSmoke: Two-Stage Sketch-Based Smoke Illustration Design Using Diffusion Models},
+        author = {Chang, Hengyuan and Zhang, Tianyu and Sato, Syuhei and Xie, Haoran},
+        journal = {IEEE Access},
+        volume = {13},
+        pages = {44997--45009},
+        year = {2025},
+        doi = {10.1109/ACCESS.2025.3548433},
+        publisher = {IEEE}
+      }
+
+  - title: "Generative AI Models for Different Steps in Architectural Design: A Literature Review"
+    authors: [Chengyuan Li, Tianyu Zhang, Xusheng Du, Ye Zhang, Haoran Xie]
+    venue: Frontiers of Architectural Research, 14(3), 759–783
+    venue_short: Frontiers of Architectural Research 2025
+    group: journal
+    date: 2025-03
+    selected: true
+    image: figures/genai-architecture.jpg
+    summary: >-
+      A review of generative AI models — diffusion, 3D generative and foundation models —
+      and how they apply across six steps of the architectural design process.
+    links:
+      pdf: https://www.sciencedirect.com/science/article/pii/S209526352400147X
+      doi: 10.1016/j.foar.2024.10.001
+      arxiv: "2404.01335"
+    bibtex: |
+      @article{li2025generative,
+        title = {Generative AI models for different steps in architectural design: A literature review},
+        author = {Li, Chengyuan and Zhang, Tianyu and Du, Xusheng and Zhang, Ye and Xie, Haoran},
+        journal = {Frontiers of Architectural Research},
+        volume = {14},
+        number = {3},
+        pages = {759--783},
+        year = {2025},
+        publisher = {Elsevier}
+      }
+
+  - title: "DualShape: Sketch-Based 3D Shape Design with Part Generation and Retrieval"
+    authors: [Xusheng Du, Tianyu Zhang, Haoran Xie]
+    venue: IEEE Access, 12, 18888–18900
+    group: journal
+    date: 2024-03
+    links:
+      pdf: https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&arnumber=10418885
+      doi: 10.1109/ACCESS.2024.3361659
+      video: https://www.youtube.com/watch?v=1aLHfbPiyJc
+    bibtex: |
+      @article{du2024dualshape,
+        title = {DualShape: Sketch-Based 3D Shape Design with Part Generation and Retrieval},
+        author = {Du, Xusheng and Zhang, Tianyu and Xie, Haoran},
+        journal = {IEEE Access},
+        volume = {12},
+        pages = {18888--18900},
+        year = {2024},
+        doi = {10.1109/ACCESS.2024.3361659},
+        publisher = {IEEE}
+      }
+
+  # ── Preprints ───────────────────────────────────────────────
+  - title: "SceneNavi: A Human-AI Cocreation Tool for Multi-Object Scene Generation Based on Relation-Centric Interaction"
+    authors: [Bofei Huang, Hongbo Zhang, Tianyu Zhang, Haoran Xie]
+    venue: Under review
+    group: preprint
+    date: 2026-08
+
+  - title: Workflow-Aware Structured Layer Decomposition for Illustration Production
+    authors: [Tianyu Zhang, Dongchi Li, Keiichi Sawada, Haoran Xie]
+    venue: arXiv preprint
+    venue_short: arXiv 2026
+    group: preprint
+    date: 2026-03
+    selected: true
+    image: figures/layer-decomposition.png
+    summary: >-
+      Decomposes anime illustrations into production layers — line art, flat color, shadow and
+      highlight — following the real illustration workflow, for recoloring and editing.
+    links:
+      pdf: https://arxiv.org/pdf/2603.14925
+      arxiv: "2603.14925"
+      code: https://github.com/zty0304/Anime-layer-decomposition
+    bibtex: |
+      @article{zhang2026workflow,
+        title = {Workflow-Aware Structured Layer Decomposition for Illustration Production},
+        author = {Zhang, Tianyu and Li, Dongchi and Sawada, Keiichi and Xie, Haoran},
+        journal = {arXiv preprint arXiv:2603.14925},
+        year = {2026}
+      }
+
+  # ── International symposium & conference presentations ──────
+  - title: Sketch-Guided Bundle-Based Anime Hair Editing
+    authors: [Tianyu Zhang, I-Chao Shen, Haoran Xie]
+    venue: 5th International Symposium on Intelligence Design (ISID 2025)
+    details: Oral, Kanazawa, Japan
+    group: presentation
+    date: 2025-02
+
+  - title: Personalizing Multi-Subject Image Generation with Spatial Control
+    authors: [Tianyu Zhang, Haoran Xie]
+    venue: 4th International Symposium on Intelligence Design (ISID 2024)
+    details: Poster, Online
+    group: presentation
+    date: 2024-03
+
+  - title: Origami-Inspired Modules for Object Augmentation
+    authors: [Mikiya Kusunoki, Tianyu Zhang, Hsin-Ruey Tsai, Haoran Xie]
+    venue: 3rd International Symposium on Intelligence Design (ISID 2023)
+    details: Poster, Online
+    group: presentation
+    date: 2023-03
+
+  - title: Sketch-Based Attribute-Controlled Scene Image Generation with Scene Graph
+    authors: [Tianyu Zhang, Kazunori Miyata, Haoran Xie]
+    venue: 3rd International Symposium on Intelligence Design (ISID 2023)
+    details: Poster, Online
+    group: presentation
+    date: 2023-03
+
+  - title: Object-Oriented Scene Graph Drawing
+    authors: [Tianyu Zhang, Chia-Ming Chang, Xi Yang, Haoran Xie]
+    venue: 2nd International Symposium on Intelligence Design (ISID 2022)
+    details: Poster, Online
+    group: presentation
+    date: 2022-03
+
+  # ── Domestic conference presentations ───────────────────────
+  - title: Anime Hair Editing Using Orientation Map Guided Diffusion Model
+    authors: [Tianyu Zhang, I-Chao Shen, Haoran Xie]
+    venue: Visual Computing 2025
+    details: Poster, Tokyo, Japan
+    group: domestic
+    date: 2025-09
+
+  - title: Graph-Based Visual Prompting for Anime Scene Generation
+    authors: [Bofei Huang, Tianyu Zhang, Haoran Xie]
+    venue: Visual Computing 2025
+    details: Oral, Tokyo, Japan
+    group: domestic
+    date: 2025-09
+
+  - title: "DualShape: パーツ生成と検索を用いたスケッチベース3D形状設計"
+    authors: [Xusheng Du, Tianyu Zhang, Haoran Xie]
+    venue: Visual Computing 2024
+    details: Oral, Tokyo, Japan
+    group: domestic
+    date: 2024-09
+
+  - title: Sketch-Guided Two-Stage Text-to-Image Generation with Spatial Control
+    authors: [Tianyu Zhang, Haoran Xie]
+    venue: 情報処理学会 コンピュータグラフィックスとビジュアル情報学研究会 第191回
+    details: Oral, Tokyo, Japan
+    group: domestic
+    date: 2023-08

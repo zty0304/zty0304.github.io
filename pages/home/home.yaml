@@ -1,0 +1,124 @@
+# ═══════════════════════════════════════════════════════════════
+#  主页 · Homepage — every piece of text on the homepage lives here.
+#  Images for this page sit in this same folder (pages/home/).
+# ═══════════════════════════════════════════════════════════════
+
+# Which sections appear on the homepage, top to bottom.
+# Remove a name to hide that section.
+#   news · publications · experience · education · awards · gallery · blog · collaborators
+sections: [news, publications, experience, education, awards, gallery, blog, collaborators]
+
+
+# ── Intro (top of the page) ────────────────────────────────────
+name: Tianyu Zhang
+name_native: 张天宇
+title: Researcher
+affiliation: Japan Advanced Institute of Science and Technology (JAIST)
+affiliation_short: JAIST
+affiliation_url: https://www.jaist.ac.jp/
+
+portrait: portrait.jpg        # file in this folder
+portrait_focus: Center        # crop: Center, Left, Right, Top, Bottom
+favicon: favicon.png          # browser tab icon, file in this folder
+
+tagline: Explainable AI and Controllable AI
+
+# Markdown allowed: **bold**, [link](https://…). Blank line = new paragraph.
+bio: |
+  Tianyu Zhang is a researcher at the Japan Advanced Institute of Science and Technology (JAIST).
+  He received his Ph.D. in Information Science from JAIST in September 2026 under the supervision
+  of Professor [Haoran Xie](https://www.jaist.ac.jp/~xie/). He also received his master's degree
+  in Information Science from JAIST in 2023, and his bachelor's degree in Computer Science from
+  Xidian University in 2019.
+
+  His research focuses on explainable AI and controllable AI, multimodal generative models, controllable image generation and editing,
+  and AI for creation.
+
+# icon: email | github | orcid | scholar | cv | linkedin | x | link
+links:
+  - label: Email
+    icon: email
+    url: mailto:kusurizhang@gmail.com
+  - label: GitHub
+    icon: github
+    url: https://github.com/zty0304
+  - label: ORCID
+    icon: orcid
+    url: https://orcid.org/0009-0007-7096-2802
+
+
+# ── News ───────────────────────────────────────────────────────
+# date   "Mon YYYY"
+# icon   optional emoji shown on the timeline, e.g. 🎉 🎓 🏆 📄 ✈️ 🎤 🚀
+# text   Markdown: **bold**, *italic*, [link](https://…). Emoji work here too,
+#        typed directly (🎉) or as a code (:tada:).
+news_count: 5                 # shown at first; older ones sit behind "Show earlier news"
+news:
+  - date: Jul 2026
+    icon: 🎓
+    text: Passed my **Ph.D. dissertation defense** on July 31, 2026.
+  - date: Jul 2026
+    icon: 🎉
+    text: "*Structure-Color Disentangled Anime Hair Synthesis via Flow Line* was conditionally accepted to **SIGGRAPH Asia 2026**."
+  - date: Apr 2025
+    icon: 📄
+    text: "*Sketch-Guided Scene Image Generation with Diffusion Model* was accepted to **Computers & Graphics**."
+  - date: Jan 2024
+    icon: 🏆
+    text: Received the **Best Presentation Award** at **CGIP 2024** for *Sketch-Guided Text-to-Image Generation with Spatial Control*.
+
+
+# ── Experience (work) ──────────────────────────────────────────
+experience:
+  - role: Researcher
+    org: Japan Advanced Institute of Science and Technology (JAIST)
+    url: https://www.jaist.ac.jp/
+    period: 2026 – Present
+
+
+# ── Education ──────────────────────────────────────────────────
+education:
+  - degree: Ph.D. in Information Science
+    org: Japan Advanced Institute of Science and Technology (JAIST)
+    note: Advisor Prof. Haoran Xie
+    period: 2023 – 2026
+  - degree: M.S. in Information Science
+    org: Japan Advanced Institute of Science and Technology (JAIST)
+    period: 2021 – 2023
+  - degree: B.S. in Computer Science
+    org: Xidian University
+    period: 2015 – 2019
+
+
+# ── Awards ─────────────────────────────────────────────────────
+awards:
+  - title: Best Paper Award
+    by: IEVC 2026
+    date: Mar 2026
+  - title: Best Paper Award
+    by: NICOGRAPH International 2025
+    date: Jun 2025
+  - title: Best Paper Award
+    by: NICOGRAPH International 2024
+    date: Jun 2024
+  - title: Best Presentation Award
+    by: CGIP 2024
+    date: Jan 2024
+
+
+# ── Collaborators ──────────────────────────────────────────────
+# Names are also auto-linked in publication author lists.
+# image: file in pages/home/people/ (optional — initials are shown when missing)
+collaborators:
+  - name: Haoran Xie
+    affiliation: JAIST & Waseda University
+    url: https://www.jaist.ac.jp/~xie/index.html
+    image: people/haoran-xie.jpg
+  - name: I-Chao Shen
+    affiliation: The University of Tokyo
+    url: https://jdily.github.io/
+    image: people/i-chao-shen.jpg
+  - name: Hao Jin
+    affiliation: JAIST
+    url: https://haojin-cg.github.io/
+    image: people/haojin.png

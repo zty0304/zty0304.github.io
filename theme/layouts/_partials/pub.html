@@ -1,0 +1,81 @@
+{{- /*
+  One publication.
+  Usage: partial "pub.html" (dict "paper" $paper "variant" "list" | "feature" "index" 1)
+*/ -}}
+{{- $p := .paper -}}
+{{- $variant := .variant | default "list" -}}
+{{- $me := site.Data.home.name -}}
+{{- $people := dict -}}
+{{- range site.Data.home.collaborators }}{{ $people = merge $people (dict .name .url) }}{{ end -}}
+
+{{- /* Build link list in a fixed order */ -}}
+{{- $labels := dict "pdf" "PDF" "arxiv" "arXiv" "code" "Code" "project" "Project" "video" "Video" "slides" "Slides" "poster" "Poster" "doi" "DOI" -}}
+{{- $links := slice -}}
+{{- with $p.links -}}
+  {{- $l := . -}}
+  {{- range $key := slice "pdf" "arxiv" "code" "project" "video" "slides" "poster" "doi" -}}
+    {{- with index $l $key -}}
+      {{- $url := . -}}
+      {{- if eq $key "doi" }}{{ $url = printf "https://doi.org/%s" . }}{{ end -}}
+      {{- if eq $key "arxiv" }}{{ $url = printf "https://arxiv.org/abs/%s" . }}{{ end -}}
+      {{- $links = $links | append (dict "key" $key "label" (index $labels $key) "url" $url) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $primary := "" }}{{ with $links }}{{ $primary = (index . 0).url }}{{ end -}}
+{{- $bibID := printf "bib-%s" (substr (md5 $p.title) 0 8) -}}
+
+<article class="pub pub--{{ $variant }}" data-reveal>
+  {{- if and (eq $variant "feature") $p.image }}
+    {{- with resources.GetMatch (printf "publications/%s" $p.image) }}
+      {{- $img := .Resize "1200x webp q82" }}
+      {{- $no := "" }}{{ with $.index }}{{ $no = printf "%02d" . }}{{ end }}
+      {{- $venue := $p.venue_short | default $p.venue }}
+      {{- $inner := printf `<span class="fig-meta"><span class="fig-no">%s</span><span class="fig-venue">%s</span></span><span class="fig-stage"><img src="%s" width="%d" height="%d" alt="Teaser figure for %s" loading="lazy" decoding="async"></span>` $no (htmlEscape $venue) $img.RelPermalink $img.Width $img.Height (htmlEscape $p.title) | safeHTML }}
+      {{- if $primary }}
+      <a class="pub-figure" href="{{ $primary }}">{{ $inner }}</a>
+      {{- else }}
+      <div class="pub-figure">{{ $inner }}</div>
+      {{- end }}
+    {{- else }}
+      {{- warnf "publications.yaml: image not found: pages/publications/%s" $p.image }}
+    {{- end }}
+  {{- end }}
+  <div class="pub-body">
+    <h3 class="pub-title">
+      {{- if $primary }}<a href="{{ $primary }}">{{ $p.title }}</a>{{ else }}{{ $p.title }}{{ end -}}
+    </h3>
+    <p class="pub-authors">
+      {{- range $i, $a := $p.authors -}}
+        {{- if $i }}, {{ end -}}
+        {{- if eq $a $me }}<span class="me">{{ $a }}</span>
+        {{- else if index $people $a }}<a href="{{ index $people $a }}">{{ $a }}</a>
+        {{- else }}{{ $a }}{{ end -}}
+      {{- end -}}
+    </p>
+    <p class="pub-venue">
+      <span class="venue">{{ $p.venue }}</span>
+      {{- with $p.details }}<span class="details">{{ . }}</span>{{ end }}
+      {{- with $p.award }}<span class="award">{{ partial "icon.html" "award" }}{{ . }}</span>{{ end }}
+    </p>
+    {{- if and (eq $variant "feature") $p.summary }}
+      <p class="pub-summary">{{ $p.summary }}</p>
+    {{- end }}
+    {{- if or $links $p.bibtex }}
+      <div class="pub-links">
+        {{- range $links }}
+          <a href="{{ .url }}">{{ partial "icon.html" .key }}{{ .label }}</a>
+        {{- end }}
+        {{- with $p.bibtex }}
+          <button type="button" data-bib-toggle aria-expanded="false" aria-controls="{{ $bibID }}">{{ partial "icon.html" "bibtex" }}BibTeX</button>
+        {{- end }}
+      </div>
+      {{- with $p.bibtex }}
+        <div class="bib" id="{{ $bibID }}" hidden>
+          <pre><code>{{ strings.TrimSpace . }}</code></pre>
+          <button type="button" class="bib-copy" data-bib-copy>{{ partial "icon.html" "copy" }}<span>Copy</span></button>
+        </div>
+      {{- end }}
+    {{- end }}
+  </div>
+</article>

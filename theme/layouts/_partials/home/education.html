@@ -1,0 +1,8 @@
+{{- with site.Data.home.education }}
+  {{- $body := "" }}
+  {{- range . }}
+    {{- $sub := .org }}{{ with .note }}{{ $sub = printf "%s · %s" $sub . }}{{ end }}
+    {{- $body = printf `%s<li data-reveal><span class="row-main">%s<span class="row-sub">%s</span></span><span class="date">%s</span></li>` $body .degree $sub .period }}
+  {{- end }}
+  {{- partial "section.html" (dict "id" "education" "title" "Education" "body" (printf `<ul class="rows timeline">%s</ul>` $body | safeHTML)) }}
+{{- end }}

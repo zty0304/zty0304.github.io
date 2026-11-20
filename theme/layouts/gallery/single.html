@@ -1,0 +1,25 @@
+{{ define "main" }}
+{{- $imgs := partial "album-images.html" .Params.album -}}
+<div class="wrap page">
+  <a class="back" href="{{ "/gallery/" | relURL }}">{{ partial "icon.html" "arrow-left" }}All albums</a>
+  {{ partial "page-head.html" (dict "title" .Title "intro" .Params.description "meta" (printf "%d photos" (len $imgs))) }}
+
+  {{- with $imgs }}
+  <div class="photo-rows photo-rows-album">
+    {{- range . }}{{ partial "photo.html" (dict "img" . "lightbox" true) }}{{ end }}
+  </div>
+  {{- else }}
+  <p class="empty">Add photos to <code>pages/gallery/{{ .Params.album }}/</code> and they will appear here.</p>
+  {{- end }}
+</div>
+
+<div class="lightbox" data-lightbox role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button class="lb-btn lb-close" type="button" data-lb-close aria-label="Close">{{ partial "icon.html" "close" }}</button>
+  <button class="lb-btn lb-prev" type="button" data-lb-prev aria-label="Previous photo">{{ partial "icon.html" "chevron-left" }}</button>
+  <figure class="lb-figure">
+    <img data-lb-img alt="">
+    <figcaption><span data-lb-caption></span><span class="lb-count" data-lb-count></span></figcaption>
+  </figure>
+  <button class="lb-btn lb-next" type="button" data-lb-next aria-label="Next photo">{{ partial "icon.html" "chevron-right" }}</button>
+</div>
+{{ end }}

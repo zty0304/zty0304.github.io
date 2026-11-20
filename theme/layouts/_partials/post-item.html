@@ -1,0 +1,7 @@
+<li class="post-item" data-reveal>
+  <time class="date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time>
+  <div>
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{- with .Params.summary | default .Summary }}<p>{{ . | plainify | truncate 180 }}</p>{{ end }}
+  </div>
+</li>

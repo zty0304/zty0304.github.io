@@ -1,0 +1,12 @@
+# ═══════════════════════════════════════════════════════════════
+#  博客 · Blog
+#  Each post is a folder in pages/blog/posts/ with an index.md inside.
+#  Copy posts/template-post/ to start a new one. Images go in the
+#  same folder as the post's index.md.
+#  In a post:  draft: true   → hidden on the live site
+#              featured: true → shown on the homepage
+# ═══════════════════════════════════════════════════════════════
+
+title: Blog
+intro: Notes, ideas and updates.
+home_count: 3      # posts on the homepage (featured first, else newest)

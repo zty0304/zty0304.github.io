@@ -1,0 +1,6 @@
+{{ define "main" }}
+<div class="wrap page not-found">
+  {{ partial "page-head.html" (dict "title" "Page not found" "intro" "The page you were looking for has moved or no longer exists.") }}
+  <p><a class="more" href="{{ "/" | relURL }}">{{ partial "icon.html" "arrow-left" }}Back to the homepage</a></p>
+</div>
+{{ end }}

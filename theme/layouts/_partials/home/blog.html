@@ -1,0 +1,9 @@
+{{- $b := site.Data.blog -}}
+{{- $all := where site.RegularPages "Section" "blog" -}}
+{{- $posts := where $all "Params.featured" true -}}
+{{- if not $posts }}{{ $posts = $all }}{{ end -}}
+{{- with first ($b.home_count | default 3) $posts.ByDate.Reverse }}
+  {{- $body := "" }}
+  {{- range . }}{{ $body = printf "%s%s" $body (partial "post-item.html" .) }}{{ end }}
+  {{- partial "section.html" (dict "id" "blog" "title" "Writing" "more" (dict "url" "/blog/" "label" "All posts") "body" (printf `<ol class="post-list">%s</ol>` $body | safeHTML)) }}
+{{- end }}

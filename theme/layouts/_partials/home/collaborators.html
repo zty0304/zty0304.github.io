@@ -1,0 +1,16 @@
+{{- with site.Data.home.collaborators }}
+  {{- $body := "" }}
+  {{- range . }}
+    {{- $avatar := "" }}
+    {{- $img := "" }}{{ with .image }}{{ $img = resources.GetMatch (printf "home/%s" .) }}{{ end }}
+    {{- with $img }}
+      {{- $t := .Fill "160x160 Top webp q80" }}
+      {{- $avatar = printf `<img class="avatar" src="%s" width="48" height="48" alt="" loading="lazy">` $t.RelPermalink }}
+    {{- else }}
+      {{- $parts := split .name " " }}
+      {{- $avatar = printf `<span class="avatar avatar-initials" aria-hidden="true">%s%s</span>` (substr (index $parts 0) 0 1) (substr (index $parts (sub (len $parts) 1)) 0 1) }}
+    {{- end }}
+    {{- $body = printf `%s<li data-reveal><a href="%s">%s<span class="person"><span class="person-name">%s</span><span class="person-aff">%s</span></span></a></li>` $body .url $avatar .name .affiliation }}
+  {{- end }}
+  {{- partial "section.html" (dict "id" "collaborators" "title" "Collaborators" "body" (printf `<ul class="people">%s</ul>` $body | safeHTML)) }}
+{{- end }}

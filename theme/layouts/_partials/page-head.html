@@ -1,0 +1,6 @@
+{{- /* Page title block. Usage: partial "page-head.html" (dict "title" … "intro" … "meta" …) */ -}}
+<header class="page-head">
+  <h1>{{ .title }}</h1>
+  {{- with .intro }}<p class="page-intro">{{ . }}</p>{{ end }}
+  {{- with .meta }}<p class="page-meta">{{ . }}</p>{{ end }}
+</header>
