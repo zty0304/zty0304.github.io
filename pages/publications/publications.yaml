@@ -51,7 +51,9 @@ papers:
       Flow lines — a sparse stroke representation of wisp geometry and color intent — and a
       dual-LoRA framework that synthesizes anime hair with disentangled structure and color.
     links:
+      project page: https://zty0304.github.io/FlowLines-web/#
       doi: 10.1145/3829340.3842227
+      code: https://github.com/zty0304/FlowLines
 
   - title: Sketch-Based Rust Texture Generation Using Diffusion Model
     authors: [Yongming Zhang, Tianyu Zhang, Kazunori Miyata, Haoran Xie]
